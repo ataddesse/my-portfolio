@@ -1,18 +1,220 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Amanuel's Portfolio</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+		<link
+			rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  	<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="browsehappy">
+				You are using an <strong>outdated</strong> browser. Please
+				<a href="#">upgrade your browser</a> to improve your experience.
+			</p>
+		<![endif]-->
+    <!-- navbar -->
+    <header>
+      <nav class="nav-wrapper black">
+        <div class="container">
+          <a href="#" class="brand-logo">Amanuel's Portfolio</a>
+          <a href="#" class="sidenav-trigger" data-target="mobile-menu">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#aboutme">About me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#stacks">Stacks</a></li>
+              <li><a href="#course">Courseworks</a></li>
+
+            <li><a href="https://www.github.com/ataddesse" class="tooltipped btn-floating btn-small indigo darken-4" data-tooltip="Git"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/ataddesse" class="tooltipped btn-floating btn-small indigo darken-4" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+          <ul class="sidenav grey lighten-2" id="mobile-menu">
+            <li><a href="#aboutme">About me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#stacks">Stacks</a></li>
+              <li><a href="#course">Courseworks</a></li>
+
+            <li><a href="https://www.github.com/ataddesse" class="tooltipped btn-floating btn-small indigo darken-4" data-tooltip="Git"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/ataddesse" class="tooltipped btn-floating btn-small indigo darken-4" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+     <section class="container section scrollspy" id="aboutme">
+      <div class="row">
+           <div class="col s12 l6">
+          <img class="responsive-img materialboxed" src="images/IMG_2837.JPG" alt="nature">
+        </div>
+          
+        <h4>Hello! I am Amanuel Taddesse, a rising junior and computer science student at Texas Christian University. I am originaly from Addis Ababa, Ethiopia, which is one of the top 10 cities to live. I came to the US to pursue my bachelor's degree on Auguest 2018. My introduction to CS began when I tried to build an HTML website in middle school. I then branched out my interest by learning different programming languages, mainly Java. I like emersing myself into technical projects. I aspire to contribute to the emerging tech scene of Africa.</h4>
+          <br/>
+          <h4><br/>
+          Whenever I get a free time I enjoy playing my keyboard and reading somebooks. I have been playing it since 5th grade. I did not get enough time for it like I used to in highschool when I get into college to be honest. I hope there will be some way that I can merge my hobby to my career. </h4>
+      </div>
+         
+    </section>  
+    <!-- Photo / Grid -->
+    <section class="container section scrollspy" id="experience">
+      <div class="row">
+       
+        <div class="col s12 l6 offset-l1"><h1 class="black-text text-darken-t4">Experience</h1>
+        </div>
+      </div>
+     
+      <div class="row">
+        
+        <div class="col s12 l6 offset-l1">
+          <h3 class="indigo-text text-darken-t4">Incoming STEP Intern (May 2020 - Present)</h3>
+         
+        </div>
+          <div class="col s12 l4">
+          <img class="responsive-img materialboxed" src="images/New-Google-Logo.jpg" alt="nature">
+        </div>
+      </div>
+        
+        <div class="row">
+        <div class="col s12 l4">
+          <img class="responsive-img materialboxed" src="images/tcu.png" alt="nature">
+        </div>
+        <div class="col s12 l6 offset-l1">
+          <h3 class="indigo-text text-darken-t4">Computer Lab Assistant (September 2019 – December 2019)</h3>
+          <h5>• Assist students in using software and equipment in the computer lab required by their course and oversee
+the working operation of the computers and computer lab equipment</h5>
+        </div>
+      </div>
+        
+          <div class="row">
+        
+        <div class="col s12 l6 offset-l1">
+          <h3 class="indigo-text text-darken-t4">Product Development Intern – ICEADDIS, Addis Ababa, Ethiopia (May 2019 – August 2019)</h3>
+               <h5>• Played an instrumental role in the development of new products for the hub as well as the improvement of
+                   existing product by working in close collaboration with the team <br/><br/>
+• Raised over 40,000 USD for a national pitch competition by organizing the annual ICT EXPO of Ethiopia
+while working with employees<br/><br/>
+• Coordinated the planning and organization of the annual ICT EXPO of Ethiopia, provided innovative
+technical solutions, and worked on business canvas models of numerous startups </h5>
+        </div>
+          <div class="col s12 l4">
+          <img class="responsive-img materialboxed" src="images/ice.png" alt="nature">
+        </div>
+      </div>
+        
+    </section>    
+
+    <!-- parallax -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="images/mock.jpg" class="responsive-img">
+      </div>
+    </div>  
+    
+    <!-- services / tabs -->
+    <section class="container section scrollspy" id="projects">
+      <div class="row">
+        <div class="col s12 l4">
+          <h2 class="black-text text-darken-4">Projects</h2>
+          <p>I believe that the best way to develop skills in the STEM field is to get the hands dirty. Therefore, I emerse my self into different side projects</p>
+        </div>
+        <div class="col s12 l6 offset-l2">
+          <ul class="tabs">
+            <li class="tab col s6">
+              <a href="#photography" class="indigo-text text-darken-4">Public Transportation Tracking App </a>
+            </li>
+            <li class="tab col s6">
+              <a href="#editing" class="indigo-text text-darken-4">Independent Projects</a>
+            </li>            
+          </ul>
+          <div class="col s12" id="photography">
+            <p class="flow-text indigo-text text-darken-4">Public Transportation Tracking App </p>
+            <p>• Lead a team of three to design and develop a mobile application for accurate tracking of public transportation
+across Addis Ababa by writing clean code, creating prototype, testing the functionality of application, and
+using native Android Studio Java IDE and Google Maps API<br/><br/>
+• Provide different analysis to both drivers and customers regarding arrival, estimated departure time, and
+potential delay in case of power breakdown</p>
+          </div>
+          <div class="col s12" id="editing">
+            <p class="flow-text indigo-text text-darken-4">Independent Projects</p>
+            <p>• Develop a mobile application to handle front desk paper works of residence halls<br/><br/>
+• Build a learning management system that integrates with Moodle open-source environment and well-suited
+with east African high school curriculum<br/></p>
+          </div>
+        </div>
+      </div>
+    </section>     
+
+    <!-- parallax -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="images/web.png" class="responsive-img">
+      </div>
     </div>
-  </body>
+
+    <!-- contact form -->
+ <section class="container section scrollspy" id="stacks">
+      <div class="row">
+       
+        <div class=""><h1 class="black-text">Some of my favorite stacks:</h1>
+        </div>
+      </div>
+      <div class="row">
+          
+         <h3 class="indigo-text text-darken-t4">  Java, Python, PHP, HTML, Android Studio, Django, phpMyAdmin</h3>
+     </div>
+        </section>
+        
+<!-- parallax -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="images/our_campus.jpg" class="responsive-img">
+      </div>
+    </div>  
+     <section class="section container scrollspy" id="course">
+    <div class="row">
+       
+        <div class="col s12 l6 offset-l1"><h1 class="black-text text-darken-t4">Relevant Courseworks</h1>
+        </div>
+      </div>
+      <div class="row">
+         <h4 class="indigo-text text-darken-t4">  
+              • EECS First Year Design &nbsp;&nbsp;&nbsp;&nbsp; • Techniques in Programing <br/>
+       • Object Oriented programming in Java <br/>
+              
+              • Data Structures &nbsp;&nbsp;&nbsp;&nbsp; • Analysis of Algorithms (Coming Fall)<br/>
+          • Econometrics(Coming Fall) <br/></h4>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="page-footer grey darken-3">
+      <div class="container">
+        <div class="row">
+            <h5 align = "center">Feel free to contact me.&nbsp;&nbsp; <a href="https://www.linkedin.com/in/ataddesse/">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/ataddesse">GitHub</a></h5>
+        </div>
+      </div>
+      <div class="footer-copyright grey darken-4">
+        <div class="container center-align">&copy; 2020 Amanuel Taddesse</div>
+      </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts.js"></script>	
+	</body>
 </html>
