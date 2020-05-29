@@ -26,3 +26,8 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+
+function qa(){
+    document.write("<h4>Hello World!</h1><p>Have a nice day!</p>");
+}
