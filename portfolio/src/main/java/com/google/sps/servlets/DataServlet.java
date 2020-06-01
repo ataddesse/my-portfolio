@@ -35,7 +35,7 @@ public class DataServlet extends HttpServlet {
     check.add("Style");
   check.add("WFH");
     check.add("Experience");
-  check.add("Fantastic!");
+  check.add("Awesome!");
  }
 
   @Override
