@@ -17,3 +17,7 @@ var submitAnswer = function() {
     alert('Answer is wrong');
   }
 };
+
+$(document).ready(function(){
+    $('.parallax').parallax();
+});

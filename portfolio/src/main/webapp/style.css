@@ -29,4 +29,6 @@ header {
   background-color: transparent;
 }
 
-
+.parallax{
+  position:static;
+}
