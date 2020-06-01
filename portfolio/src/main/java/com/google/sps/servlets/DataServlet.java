@@ -30,10 +30,12 @@ public class DataServlet extends HttpServlet {
  private ArrayList<String> check; 
  public void init() {
     check = new ArrayList<String>();
-     
-  check.add("Black");
-  check.add("Lives");
-  check.add("Matter!");
+     check.add("Mood");
+  check.add("Summer");
+    check.add("Style");
+  check.add("WFH");
+    check.add("Experience");
+  check.add("Fantastic!");
  }
 
   @Override

@@ -23,7 +23,7 @@ $(document).ready(function(){
 });
 
 //This is the begining of fetching the JSON string 
-function fetchJSON() {
+function fetchJson() {
   console.log('Fetching JSON');
 
   // The fetch() function returns a Promise because the request is asynchronous.
