@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 header {
   background: url(images/unnamed.png);
   background-size: cover;
@@ -23,4 +27,8 @@ header {
 .tabs .tab a:focus,
 .tabs .tab a:focus.active {
   background-color: transparent;
+}
+
+.parallax{
+  position:static;
 }

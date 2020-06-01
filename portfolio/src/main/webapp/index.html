@@ -11,14 +11,14 @@
 		<title>Amanuel's Portfolio</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Compiled and minified CSS -->
+   <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-		<link
-			rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link
+      rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  	<link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
 	</head>
-	<body>
+	<body onload="getContact()">
 		<!--[if lt IE 7]>
 			<p class="browsehappy">
 				You are using an <strong>outdated</strong> browser. Please
@@ -67,9 +67,62 @@
           <br/>
           <h4><br/>
           Whenever I get a free time I enjoy playing my keyboard and reading somebooks. I have been playing it since 5th grade. To be honest, I did not get enough time for it like I used to in highschool when I get into college to be honest. I hope there will be some way that I can merge my hobby to my career. </h4>
+          
+          
+          
+            <h3 class="indigo-text text-darken-t4">Fun Question: Which country colonized Ethiopia?</h3><br>
+<form >
+    <p>
+      <label>
+        <input name="group1" type="radio" value="sdfs" />
+        <span>Italy</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="group1" type="radio" value="sdfs"/>
+        <span>Britain</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group1" type="radio"  value="sdfs"/>
+        <span>Belgium</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="group1" type="radio" value = "df" />
+        <span>France</span>
+      </label>
+    </p>
+     <p>
+      <label>
+        <input name="group1" type="radio" value="answer"/>
+        <span>Ethiopia was never colonized!</span>
+      </label>
+    </p>
+    <button class="waves-effect waves-light btn" onclick="submitAnswer()">Submit Answer</button>
+  </form>
+
+          
+          
       </div>
          
+         
+         
+         
     </section>  
+
+        
+        
+        
+         <!-- parallax -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Googleplex_HQ_%28cropped%29.jpg/1280px-Googleplex_HQ_%28cropped%29.jpg" class="responsive-img">
+      </div>
+    </div> 
     <!-- Photo / Grid -->
     <section class="container section scrollspy" id="experience">
       <div class="row">
@@ -205,16 +258,40 @@ with east African high school curriculum<br/></p>
     <footer class="page-footer grey darken-3">
       <div class="container">
         <div class="row">
-            <h5 align = "center">Feel free to contact me.&nbsp;&nbsp; <a href="https://www.linkedin.com/in/ataddesse/">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/ataddesse">GitHub</a></h5>
+
+<h5 align = "center">Feel free to contact me.&nbsp;&nbsp;</h5>
+      <form action="/get-comment" class="col s6">
+
+   <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+            <label for="textarea2">Textarea</label>
+          </div>
+        </div>
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+        
+      </form>
+    
+          
+       <a align = "center" href="https://www.linkedin.com/in/ataddesse/">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/ataddesse">GitHub</a>
         </div>
       </div>
       <div class="footer-copyright grey darken-4">
-        <div class="container center-align">&copy; 2020 Amanuel Taddesse</div>
+        <div class="container center-align">&copy; 2020 Amanuel iTaddesse</div>
       </div>
     </footer>
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="scripts.js"></script>	
+    <script src="scripts.js"></script>
 	</body>
 </html>
