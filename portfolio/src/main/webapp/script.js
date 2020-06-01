@@ -2,20 +2,25 @@ var submitAnswer = function() {
 
   var radios = document.getElementsByName('group1');
   var val= "";
-  for (var i = 0, length = radios.length; i < length; i++) {
+  for (var i = 0;  i < (radio.length);  i++) {
       if (radios[i].checked) {
          val = radios[i].value; 
          break;
        }
   }
-  
-  if (val == "" ) {
-    alert('please select choice answer');
-  } else if ( val == "answer" ) {
-    alert('Answer is correct !');
-  } else {
+  switch(val){
+      case "":
+   alert('please select choice answer');
+   break;
+   case "answer":
+   alert('Answer is correct !');
+   break;
+     default:
     alert('Answer is wrong');
+    break;
+
   }
+  
 };
 
 $(document).ready(function(){
