@@ -23,10 +23,10 @@ $(document).ready(function(){
 });
 
 //This is the begining of fetching the JSON string 
-function fetchJson() {
+function fetchingJson() {
   console.log('Fetching JSON');
 
-  // The fetch() function returns a Promise because the request is asynchronous.
+ 
   const responsePromise = fetch('/portfolio');
 
   // When the request is complete, pass the response into handleResponse().
@@ -55,4 +55,25 @@ function addToDom(quote) {
 
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
+}
+
+//Fetch comments and build UI
+function getContact() {
+  fetch('/get-contact').then(response => response.json()).then((game) => {
+    const totalEl = document.getElementById('total');
+    
+
+    // Build the list of history entries.
+    const historyEl = document.getElementById('history');
+    game.history.forEach((line) => {
+      historyEl.appendChild(createListElement(line));
+    });
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
