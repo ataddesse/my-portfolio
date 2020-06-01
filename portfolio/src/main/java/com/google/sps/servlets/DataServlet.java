@@ -36,7 +36,7 @@ public class DataServlet extends HttpServlet {
   check.add("WFH");
     check.add("Experience");
   check.add("Awesome!");
- }
+}
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
