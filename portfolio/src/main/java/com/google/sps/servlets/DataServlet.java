@@ -15,7 +15,9 @@
 package com.google.sps.servlets;
 
 
-
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class DataServlet extends HttpServlet {
   check.add("WFH");
     check.add("Experience");
   check.add("Awesome!");
- }
+}
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -49,25 +51,31 @@ public class DataServlet extends HttpServlet {
     
   }
 
+ @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String first_name = getParameter(request, "first_name", "");
+    String last_name = getParameter(request, "last_name", "");
+        String email = getParameter(request, "email", "");
+    String comment = getParameter(request, "comment", "");
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // If the user sends another POST request after the game is over, then start a new game.
-    if (game.isGameOver()) {
-      game = new SubtractionGame();
-    }
 
-    // Get the input from the form.
-    int playerChoice = getPlayerChoice(request);
-    if (playerChoice == -1) {
-      response.setContentType("text/html");
-      response.getWriter().println("Please enter an integer between 1 and 3.");
-      return;
-    }
 
-    game.takePlayerTurn(playerChoice);
+    long timestamp = System.currentTimeMillis();
+
+    Entity taskEntity = new Entity("Messages");
+    taskEntity.setProperty("message", text);
+    taskEntity.setProperty("fname", fname);
+    taskEntity.setProperty("lname", lname);
+    taskEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
   }
+
+
+ 
 
 }
