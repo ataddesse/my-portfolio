@@ -15,7 +15,9 @@
 package com.google.sps.servlets;
 
 
-
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -47,6 +49,30 @@ public class DataServlet extends HttpServlet {
     response.setContentType("text/html;");
     response.getWriter().println(json);
     
+  }
+
+ @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String first_name = getParameter(request, "first_name", "");
+    String last_name = getParameter(request, "last_name", "");
+        String email = getParameter(request, "email", "");
+    String comment = getParameter(request, "comment", "");
+
+
+
+    long timestamp = System.currentTimeMillis();
+
+    Entity taskEntity = new Entity("Messages");
+    taskEntity.setProperty("message", text);
+    taskEntity.setProperty("fname", fname);
+    taskEntity.setProperty("lname", lname);
+    taskEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
   }
 
 
