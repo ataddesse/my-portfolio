@@ -42,8 +42,9 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-  
+  //Initializing a gson instance
   Gson gson = new Gson();
+  //Converting the Arraystring to a Json. 
     String json = gson.toJson(check);
    
     response.setContentType("text/html;");
@@ -53,6 +54,8 @@ public class DataServlet extends HttpServlet {
 
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+      //Fetching the parameters from html form in index.html
         String first_name = getParameter(request, "first_name", "");
     String last_name = getParameter(request, "last_name", "");
         String email = getParameter(request, "email", "");
@@ -61,7 +64,8 @@ public class DataServlet extends HttpServlet {
 
 
     long timestamp = System.currentTimeMillis();
-
+    
+    //Using the fetched variables with the taskEntity
     Entity taskEntity = new Entity("Messages");
     taskEntity.setProperty("message", text);
     taskEntity.setProperty("fname", fname);
