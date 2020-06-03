@@ -38,19 +38,19 @@ public class DataServlet extends HttpServlet {
  public void init() {
 
     check = new ArrayList<String>();
-     check.add("Mood");
-  check.add("Summer");
+    check.add("Mood");
+    check.add("Summer");
     check.add("Style");
-  check.add("WFH");
+    check.add("WFH");
     check.add("Experience");
-  check.add("Awesome!");
+    check.add("Awesome!");
 
 }
 
  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-  response.setContentType("text/html;");
+    response.setContentType("text/html;");
     response.setContentType("application/json;");
     
     Query query = new Query("Messages").addSort("timestamp", SortDirection.DESCENDING);
@@ -58,10 +58,6 @@ public class DataServlet extends HttpServlet {
 
     PreparedQuery results = datastore.prepare(query); 
 
- 
-
-    
- 
     for (Entity entity : results.asIterable()) {
          long id = entity.getKey().getId();
         response.getWriter().println(entity.getProperty("first_name"));
@@ -70,42 +66,27 @@ public class DataServlet extends HttpServlet {
         response.getWriter().println(entity.getProperty("comment"));
         response.getWriter().println(entity.getProperty("timestamp"));
         response.getWriter().println("\n");
-        
-       
-        
-     
+
     }
 
   Gson gson = new Gson();
-
-    response.setContentType("application/json;");
-    //response.getWriter().println(gson.toJson(tasks));
-
+  response.setContentType("application/json;");
+ 
   }
 
 
  @Override
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-  
-      //Fetching the parameters from html form in index.html
-    String first_name = request.getParameter("first_name");
-    String last_name = request.getParameter("last_name");
-    String email = request.getParameter("email");
-    String comment = request.getParameter("comment");
-
-
-
+   
     long timestamp = System.currentTimeMillis();
     
     //Using the fetched variables with the taskEntity
     Entity taskEntity = new Entity("Messages");
-   
-    taskEntity.setProperty("first_name", first_name);
-    taskEntity.setProperty("last_name", last_name);
-    taskEntity.setProperty("email", email);
-     taskEntity.setProperty("comment", comment);
+    taskEntity.setProperty("first_name", request.getParameter("first_name"));
+    taskEntity.setProperty("last_name", request.getParameter("last_name"));
+    taskEntity.setProperty("email", request.getParameter("email"));
+    taskEntity.setProperty("comment", request.getParameter("comment"));
     taskEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
