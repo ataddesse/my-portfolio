@@ -52,8 +52,10 @@ public class DataServlet extends HttpServlet {
     datastore.put(taskEntity);
 
     // Redirect back to the HTML page.
-    response.sendRedirect("/contact_me.html");
+    response.sendRedirect("/");
   }
+
+  
 
 
  

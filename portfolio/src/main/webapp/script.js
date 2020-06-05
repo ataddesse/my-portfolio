@@ -23,9 +23,7 @@ var submitAnswer = function() {
   
 };
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
+
 
 $(document).ready(function(){
     $('.parallax').parallax();
@@ -58,13 +56,6 @@ function handleResponse(response) {
   textPromise.then(addToDom);
 }
 
-/** Adds a random quote to the DOM. */
-function addToDom(quote) {
-  console.log('Adding quote to dom: ' + quote);
-
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
-}
 
 //Fetch comments and build UI
 function getContact() {
@@ -87,43 +78,32 @@ function createListElement(text) {
   return liElement;
 }
 
-/** Fetches tasks from the server and adds them to the DOM. */
-function loadTasks() {
-  fetch('/list-post').then(response => response.json()).then((tasks) => {
-    const taskListElement = document.getElementById('post-list');
-    tasks.forEach((task) => {
-      taskListElement.appendChild(createTaskElement(task));
-    })
+
+
+
+
+
+
+
+
+
+
+function getComment() {
+  fetch('/list-post').then(response => response.json()).then((comment) => {
+    const statsListElement = document.getElementById('post-list');
+     statsListElement.innerHTML = '';
+    for (i = 0; i < comment.length; i++) {
+        statsListElement.appendChild(createListElement(comment[i]));
+    };
   });
 }
 
-/** Creates an element that represents a task, including its delete button. */
-function createTaskElement(task) {
-  const taskElement = document.createElement('li');
-  taskElement.className = 'task';
 
-  const titleElement = document.createElement('span');
-  titleElement.innerText = task.title;
-
-  const deleteButtonElement = document.createElement('button');
-  deleteButtonElement.innerText = 'Delete';
-  deleteButtonElement.addEventListener('click', () => {
-    deleteTask(task);
-
-    // Remove the task from the DOM.
-    taskElement.remove();
-  });
-
-  taskElement.appendChild(titleElement);
-  taskElement.appendChild(deleteButtonElement);
-  return taskElement;
-}
-
-/** Tells the server to delete the task. */
-function deleteTask(task) {
-  const params = new URLSearchParams();
-  params.append('id', task.id);
-  fetch('/delete-task', {method: 'POST', body: params});
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.classList.add("collection-item");
+  liElement.innerText = text;
+  return liElement;
 }
 
 

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css" />
      <script src="script.js"></script>
 	</head>
-	<body onload = "loadTasks()" >
+	<body >
 		<!--[if lt IE 7]>
 			<p class="browsehappy">
 				You are using an <strong>outdated</strong> browser. Please
@@ -98,14 +98,14 @@
           <label for="email">Amount</label>
         </div>
       </div>
-  
+   <input class="btn waves-effect waves-light"  type="submit" value="See Comments" onclick="getComment()" />
 </div>
+
  
-  <button class="btn waves-effect waves-light" type="submit"  />Submit</button>
 </form>
   
          
-<ul id='post-list'></ul>
+<ul class="collection" id="post-list" > </ul>
 
  </div>
 
