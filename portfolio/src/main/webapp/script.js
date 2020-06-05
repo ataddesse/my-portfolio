@@ -23,8 +23,6 @@ var submitAnswer = function() {
   
 };
 
-
-
 $(document).ready(function(){
     $('.parallax').parallax();
 });
@@ -33,7 +31,6 @@ $(document).ready(function(){
 function fetchingJson() {
   console.log('Fetching JSON');
 
- 
   const responsePromise = fetch('/portfolio');
 
   // When the request is complete, pass the response into handleResponse().
@@ -62,7 +59,6 @@ function getContact() {
   fetch('/get-contact').then(response => response.json()).then((game) => {
     const totalEl = document.getElementById('total');
     
-
     // Build the list of history entries.
     const historyEl = document.getElementById('history');
     game.history.forEach((line) => {
@@ -79,31 +75,40 @@ function createListElement(text) {
 }
 
 
-
-  
-
-
-
-
 function getComment() {
-    var limit = document.getElementById("num-results").value;
+  var limit = document.getElementById("num-results").value;
   var limitParsed = +limit;
-  console.log(limitParsed);
+   
   fetch('/list-post').then(response => response.json()).then((comment) => {
-    const statsListElement = document.getElementById('post-list');
+     const statsListElement = document.getElementById('post-list');
      statsListElement.innerHTML = '';
-    for (i = 0; i < limitParsed; i++) {
+
+     //Get the right value of the limit based on the user's input.  
+     var difference;
+    if(comment.length < limitParsed || comment.length == limitParsed){
+    difference = comment.length;
+    }else{
+    difference = limitParsed;
+    }
+
+    //Output every comment until reaching the limit
+    var i;
+    for (i = 0; i < difference; i++) {
         statsListElement.appendChild(createListElement(comment[i]));
     };
   });
 }
-
 
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.classList.add("collection-item");
   liElement.innerText = text;
   return liElement;
+}
+
+function deleteComments(){
+    const request = new Request('/delete-task', {method: 'POST'});
+  const responsePromise = fetch(request);
 }
 
 

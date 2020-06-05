@@ -28,30 +28,20 @@ public class ListCommentServlet extends HttpServlet {
 
  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      
-    response.setContentType("text/html;");
-    response.setContentType("application/json;");
     Query query = new Query("Messages").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    
-    ArrayList<String> Comments = new ArrayList<String>();
+    ArrayList<String> comments = new ArrayList<>();
+
     for (Entity entity : results.asIterable()) {
-     
       long id = entity.getKey().getId();
-      String comments = (String) entity.getProperty("comment");
+      String comment = (String) entity.getProperty("comment");
       long timestamp = (long) entity.getProperty("timestamp");
-      Comments.add(comments);
+      comments.add(comment);
     }
-
-    for(String mess : Comments){
-        System.out.println(mess);
-    }
-
-    Gson gson = new Gson();
 
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(Comments));
+    response.getWriter().println(new Gson().toJson(comments));
  
   }
 
