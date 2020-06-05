@@ -80,19 +80,19 @@ function createListElement(text) {
 
 
 
-
-
-
-
+  
 
 
 
 
 function getComment() {
+    var limit = document.getElementById("num-results").value;
+  var limitParsed = +limit;
+  console.log(limitParsed);
   fetch('/list-post').then(response => response.json()).then((comment) => {
     const statsListElement = document.getElementById('post-list');
      statsListElement.innerHTML = '';
-    for (i = 0; i < comment.length; i++) {
+    for (i = 0; i < limitParsed; i++) {
         statsListElement.appendChild(createListElement(comment[i]));
     };
   });
