@@ -74,7 +74,6 @@ function createListElement(text) {
   return liElement;
 }
 
-
 function getComment() {
   var limit = document.getElementById("num-results").value;
   var limitParsed = +limit;
@@ -92,8 +91,7 @@ function getComment() {
     }
 
     //Output every comment until reaching the limit
-    var i;
-    for (i = 0; i < difference; i++) {
+    for (var i = 0; i < difference; i++) {
         statsListElement.appendChild(createListElement(comment[i]));
     };
   });
@@ -107,7 +105,7 @@ function createListElement(text) {
 }
 
 function deleteComments(){
-    const request = new Request('/delete-task', {method: 'POST'});
+  const request = new Request('/delete-task', {method: 'POST'});
   const responsePromise = fetch(request);
 }
 
