@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="style.css" />
      
 	</head>
-	<body>
+	<body onload="createMap()">
 		<!--[if lt IE 7]>
 			<p class="browsehappy">
 				You are using an <strong>outdated</strong> browser. Please
@@ -108,8 +108,8 @@
     <button class="waves-effect waves-light btn" onclick="submitAnswer()">Submit Answer</button>
   </form>
 
-  <h3>Top attraction sites in Ethiopia</h3>
-    <div id="map"></div>
+  <h3>Top attraction sites in Ethiopia.</h3>
+    <div id="map" ></div>
      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVOf9MJgzwmre04NU9qnC0rOoDQqhuAcI&callback=initMap"
   type="text/javascript"></script>
    
