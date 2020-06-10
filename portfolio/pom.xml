@@ -32,6 +32,14 @@
       <scope>provided</scope>
     </dependency>
 
+
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.8.3</version>
+    </dependency>
+
+
     <dependency>
   <groupId>com.google.appengine</groupId>
   <artifactId>appengine-api-1.0-sdk</artifactId>
@@ -49,7 +57,7 @@
         <version>2.2.0</version>
         <configuration>
           <!-- TODO: set project ID. -->
-          <deploy.projectId>atesfaye-step-2020</deploy.projectId>
+          <deploy.projectId>atesfaye-step</deploy.projectId>
           <deploy.version>1</deploy.version>
         </configuration>
       </plugin>
