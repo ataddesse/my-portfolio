@@ -6,6 +6,43 @@ function createMap() {
   map = new google.maps.Map(
     document.getElementById('map'),
     {center: {lat: 9.007354, lng: 38.855677}, zoom: 6.07});
+// First, create an object containing LatLng and population for each city.
+      var countrymap = {
+        amhara: {
+          center: {lat: 11.959951, lng: 38.234205},
+          population: 3
+        },
+        oromia: {
+          center: {lat: 7.762024, lng: 39.506409},
+          population: 2
+        },
+        tigray: {
+          center: {lat: 14.084550, lng: 38.742793},
+          population: 1
+        },
+        addis: {
+          center: {lat: 9.009967, lng: 38.755141},
+          population: 1
+        }
+      };
+
+      // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        for (var region in countrymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: countrymap[region].center,
+        
+            radius: countrymap[region].population * 100000
+          });
+              console.log("Hello Wassup");
+        }
 
   // When the user clicks in the map, show a marker with a text box the user can
   // edit.
@@ -291,3 +328,5 @@ function buildInfoWindowInput(lat, lng) {
 
   return containerDiv;
 }
+
+ 
