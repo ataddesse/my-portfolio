@@ -20,28 +20,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.sps.data.Comment;
+import java.lang.*;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 
 @WebServlet("/list-post")
 public class ListCommentServlet extends HttpServlet {
+    private ArrayList<Comment> comments = new ArrayList<Comment>();
 
  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Messages").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    ArrayList<String> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
+   
       long id = entity.getKey().getId();
-      String comment = (String) entity.getProperty("comment");
-      long timestamp = (long) entity.getProperty("timestamp");
+      String com = (String) entity.getProperty("comment");
+      Double score = (double)(Long)entity.getProperty("score");
+      long timestamp = (long)entity.getProperty("timestamp");
+
+           Comment comment = new Comment(com, score);
+
       comments.add(comment);
     }
-
+    
     response.setContentType("application/json;");
     response.getWriter().println(new Gson().toJson(comments));
+
  
   }
 
