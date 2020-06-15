@@ -78,21 +78,21 @@ function getComment() {
   var limit = document.getElementById("num-results").value;
   var limitParsed = +limit;
    
-  fetch('/list-post').then(response => response.json()).then((comment) => {
+  fetch('/list-post').then(response => response.json()).then((comments) => {
      const statsListElement = document.getElementById('post-list');
      statsListElement.innerHTML = '';
 
      //Get the right value of the limit based on the user's input.  
      var difference;
-    if(comment.length < limitParsed || comment.length == limitParsed){
-    difference = comment.length;
+    if(comments.length < limitParsed || comments.length == limitParsed){
+    difference = comments.length;
     }else{
     difference = limitParsed;
     }
 
     //Output every comment until reaching the limit
     for (var i = 0; i < difference; i++) {
-        statsListElement.appendChild(createListElement(comment[i]));
+        statsListElement.appendChild(createListElement(comments[i]));
     };
   });
 }
@@ -100,7 +100,7 @@ function getComment() {
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.classList.add("collection-item");
-  liElement.innerText = text;
+  liElement.innerText = text.content + text.score;
   return liElement;
 }
 
@@ -108,6 +108,3 @@ function deleteComments(){
   const request = new Request('/delete-task', {method: 'POST'});
   const responsePromise = fetch(request);
 }
-
-
-
