@@ -23,6 +23,11 @@ import java.util.HashSet;
 import java.util.Collection;
 
 public final class FindMeetingQuery {
+    /**
+    * @param  A Collection of events during of day of the the candidate attendees
+    * @param  A meeting request that includes the people and the duration.
+    * @return A Collection of Timeranges when the meeting could happen.
+    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
 
     List<TimeRange> unavailableTimes = new ArrayList<>();
@@ -32,6 +37,13 @@ public final class FindMeetingQuery {
     // Iterate through each persons event and add the time time range to the unavailableTimes list
     for (Event event : events){
       if (!isEventBlockingRequest(event, request)){
+        unavailableTimes.add(event.getWhen());
+      }
+    }
+
+     // Get optional attendees' occupied times
+    for (Event event : events) {
+      if (!Collections.disjoint(event.getAttendees(), request.getOptionalAttendees())) {
         unavailableTimes.add(event.getWhen());
       }
     }
@@ -60,7 +72,10 @@ public final class FindMeetingQuery {
     return availableMeetingTimes;
   }
 
-  // Merge overlapping time intervals for better data handling and clarity when looking for free spaces
+  /** Merge overlapping time intervals for better data handling and clarity when looking for free spaces
+  * @param  A list of Timeranges.
+  * @return List of Timeranges that are merged and consecutive.
+  */
   public List<TimeRange> mergeTimeRanges(List<TimeRange> allUnavailableTimes){
     // Sort the unavailable times for clarity
     Collections.sort(allUnavailableTimes, TimeRange.ORDER_BY_START);
@@ -89,7 +104,11 @@ public final class FindMeetingQuery {
     return result;
   }
 
-  //checks to make sure that the meeting has atleast one person by comparing the event attendees list and the input guest list 
+  /** checks to make sure that the meeting has atleast one person by comparing the event attendees list and the input guest list 
+  * @param  event  A list of Timeranges.
+  * @param  request  A list of Timeranges.
+  * @return true if an event is blocking a request, false otherwise
+  */
   public boolean isEventBlockingRequest(Event event, MeetingRequest request){
     Set<String> eventAttendees = new HashSet<>(event.getAttendees());
 
