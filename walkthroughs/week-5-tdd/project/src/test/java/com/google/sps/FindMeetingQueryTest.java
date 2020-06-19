@@ -32,22 +32,31 @@ public final class FindMeetingQueryTest {
   private static final Collection<String> NO_ATTENDEES = Collections.emptySet();
 
   // Some people that we can use in our tests.
+
+  // Some people that we can use in our tests.
   private static final String PERSON_A = "Person A";
   private static final String PERSON_B = "Person B";
+  private static final String PERSON_C = "Person C";
+  private static final String PERSON_D = "Person D";
+  
 
   // All dates are the first day of the year 2020.
   private static final int TIME_0800AM = TimeRange.getTimeInMinutes(8, 0);
   private static final int TIME_0830AM = TimeRange.getTimeInMinutes(8, 30);
+  private static final int TIME_0845AM = TimeRange.getTimeInMinutes(8, 45);
   private static final int TIME_0900AM = TimeRange.getTimeInMinutes(9, 0);
   private static final int TIME_0930AM = TimeRange.getTimeInMinutes(9, 30);
   private static final int TIME_1000AM = TimeRange.getTimeInMinutes(10, 0);
   private static final int TIME_1100AM = TimeRange.getTimeInMinutes(11, 00);
+  private static final int TIME_1200PM = TimeRange.getTimeInMinutes(12, 00);
+  private static final int TIME_0100PM = TimeRange.getTimeInMinutes(13, 00);
 
   private static final int DURATION_30_MINUTES = 30;
   private static final int DURATION_60_MINUTES = 60;
   private static final int DURATION_90_MINUTES = 90;
   private static final int DURATION_1_HOUR = 60;
   private static final int DURATION_2_HOUR = 120;
+  private static final int DURATION_WHOLE_DAY = 1440;
 
   private FindMeetingQuery query;
 
@@ -270,5 +279,63 @@ public final class FindMeetingQueryTest {
 
     Assert.assertEquals(expected, actual);
   }
-}
 
+  @Test
+  public void onlyOptionalAttendeesWithGaps() {
+    // Have only optional attendees, with gaps in the schedule.
+    //
+    // Events  :     |-A-|  |-A-|  |-B-|
+    // Day     : |------------------------|
+    // Options : |---|   |--|   |--|   |--|
+
+    Collection<Event> events = Arrays.asList(
+        new Event("Event 1", TimeRange.fromStartEnd(TIME_0830AM, TIME_0900AM, false),
+            Arrays.asList(PERSON_A)),
+        new Event("Event 2", TimeRange.fromStartEnd(TIME_1000AM, TIME_1100AM, false),
+            Arrays.asList(PERSON_A)),
+        new Event("Event 3", TimeRange.fromStartEnd(TIME_1200PM, TIME_0100PM, false),
+            Arrays.asList(PERSON_B)));
+
+    MeetingRequest request = new MeetingRequest(Arrays.asList(), DURATION_30_MINUTES);
+    request.addOptionalAttendee(PERSON_A);
+    request.addOptionalAttendee(PERSON_B);
+
+    Collection<TimeRange> actual = query.query(events, request);
+    Collection<TimeRange> expected =
+        Arrays.asList(
+          TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0830AM, false),
+          TimeRange.fromStartEnd(TIME_0900AM, TIME_1000AM, false),
+          TimeRange.fromStartEnd(TIME_1100AM, TIME_1200PM, false),
+          TimeRange.fromStartEnd(TIME_0100PM, TimeRange.END_OF_DAY, true)
+        );
+
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
+  public void onlyOptionalAttendeesNoGaps() {
+    // Have only optional attendees, without gaps in the schedule.
+    //
+    // Events  : |---A---||-A-||---B---|
+    // Day     : |---------------------|
+    // Options : 
+
+    Collection<Event> events = Arrays.asList(
+        new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0900AM, false),
+            Arrays.asList(PERSON_A)),
+        new Event("Event 2", TimeRange.fromStartEnd(TIME_0900AM, TIME_1100AM, false),
+            Arrays.asList(PERSON_A)),
+        new Event("Event 3", TimeRange.fromStartEnd(TIME_1100AM, TimeRange.END_OF_DAY, false),
+            Arrays.asList(PERSON_B)));
+
+    MeetingRequest request = new MeetingRequest(Arrays.asList(), DURATION_30_MINUTES);
+    request.addOptionalAttendee(PERSON_A);
+    request.addOptionalAttendee(PERSON_B);
+
+    Collection<TimeRange> actual = query.query(events, request);
+    Collection<TimeRange> expected = Arrays.asList();
+
+    Assert.assertEquals(expected, actual);
+  }
+
+}
