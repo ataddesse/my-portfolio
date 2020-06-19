@@ -24,8 +24,8 @@ import java.util.Collection;
 
 public final class FindMeetingQuery {
     /**
-    * @param  A Collection of events during of day of the the candidate attendees
-    * @param  A meeting request that includes the people and the duration.
+    * @param  events A Collection of events during of day of the the candidate attendees
+    * @param  request A meeting request that includes the people and the duration.
     * @return A Collection of Timeranges when the meeting could happen.
     */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
@@ -73,7 +73,7 @@ public final class FindMeetingQuery {
   }
 
   /** Merge overlapping time intervals for better data handling and clarity when looking for free spaces
-  * @param  A list of Timeranges.
+  * @param allUnavailableTimes A list of Timeranges.
   * @return List of Timeranges that are merged and consecutive.
   */
   public List<TimeRange> mergeTimeRanges(List<TimeRange> allUnavailableTimes){
